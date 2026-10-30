@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Simples</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif !important;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F9F9F9;
+            color: #A52422;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 420px;
+            background-color: #111111;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #A52422;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        input {
+            background-color: #A52422;
+            border: 2px solid #cbd5e1;
+            color: #F9F9F9;
+        }
+
+      
+        input::placeholder {
+            color: #ffffff;
+            opacity: 1.0;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        input[type="color"] {
+            height: 45px;
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #A52422;
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 107, 107, 0.3);
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #F9F9F9;
+            color: #A52422;
+            transition: 0.3s;
+        }
+
+        #resultado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1>Formulário de Cadastro</h1>
+
+        <form id="formulario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required placeholder="Digite seu nome">
+
+            <label for="nascimento">Data de nascimento:</label>
+            <input type="date" id="nascimento" required>
+
+            <label for="cor">Cor preferida:</label>
+            <input type="color" id="cor" value="#ff6b6b">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <section>
+            <h2>Dados preenchidos</h2>
+            <div id="resultado"></div>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const nascimento = document.getElementById("nascimento").value;
+            const cor = document.getElementById("cor").value;
+
+            resultado.innerHTML = "";
+
+            const pNome = document.createElement("p");
+            pNome.textContent = "Nome: " + nome;
+
+            const pNascimento = document.createElement("p");
+            pNascimento.textContent = "Nascimento: " + nascimento;
+
+            const pCor = document.createElement("p");
+            pCor.textContent = "Cor preferida: " + cor;
+
+            const amostraCor = document.createElement("div");
+            amostraCor.style.backgroundColor = cor;
+            amostraCor.style.width = "100px";
+            amostraCor.style.height = "40px";
+            amostraCor.style.border = "1px solid #cbd5e1";
+            amostraCor.style.borderRadius = "6px";
+
+            resultado.appendChild(pNome);
+            resultado.appendChild(pNascimento);
+            resultado.appendChild(pCor);
+            resultado.appendChild(amostraCor);
+        });
+    </script>
+
+</body>
+</html>
